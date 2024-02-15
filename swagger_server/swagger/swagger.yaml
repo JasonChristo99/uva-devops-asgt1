@@ -3,7 +3,7 @@ info:
   title: Simple Inventory API
   description: This is a simple API
   contact:
-    email: you@your-company.com
+    email: christofilakisiasonas@gmail.com
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -108,13 +108,13 @@ components:
           items:
             $ref: '#/components/schemas/GradeRecord'
       example:
-        student_id: 0.80082819046101150206595775671303272247314453125
+        student_id: 1
         last_name: last_name
         first_name: first_name
         gradeRecords:
-        - grade: 6.0274563
+        - grade: 6.5
           subject_name: subject_name
-        - grade: 6.0274563
+        - grade: 7.5
           subject_name: subject_name
     GradeRecord:
       required:
@@ -130,6 +130,6 @@ components:
           type: number
           format: float
       example:
-        grade: 6.0274563
+        grade: 6.5
         subject_name: subject_name
 
