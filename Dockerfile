@@ -1,5 +1,8 @@
 FROM python:3.8-alpine
 
+# print mongodb version
+#CMD ["mongod", "--version"]
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
