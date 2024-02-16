@@ -12,10 +12,10 @@ collection = db['students']
 
 
 def add(student=None):
-    # If student_id is not provided, generate a new ObjectId
+    # If student_id is not provided, generate a new unique id
     if not student.student_id:
         student.student_id = str(ObjectId())
-
+    print(client.list_database_names())
     query = {"student_id": student.student_id}
     existing_student = collection.find_one(query)
     if existing_student:
@@ -25,7 +25,10 @@ def add(student=None):
     return student.student_id
 
 def get_by_id(student_id=None, subject=None):
-    student = collection.find_one({"student_id": student_id})
+    # print('get_by_id', student_id, subject)
+    student = collection.find_one({"student_id": student_id}, {'_id': False})
+    # print('student', student)
+
     if not student:
         return 'not found', 404
     return student
