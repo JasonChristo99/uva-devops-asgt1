@@ -14,7 +14,23 @@ services:
       MONGO_URI: ${{ env.MONGO_URI }}
 
 jobs:
+  setup-mongo:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:4
+        ports:
+          - 27017:27017
+    steps:
+      - name: Wait for MongoDB to be ready
+        run: |
+          until docker run --rm -i mongo mongo --eval "db.runCommand({ connectionStatus: 1 })"; do
+            sleep 1
+          done
+      - name: Print MongoDB version
+        run: docker exec mongo mongo --version
   build:
+    needs: setup-mongo
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
