@@ -8,7 +8,6 @@ env:
 
 jobs:
   build:
-    needs: setup-mongo
     runs-on: ubuntu-latest
     steps:
     - name: Start MongoDB
