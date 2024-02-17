@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     services:
-      mongodb:
+      mongo:
         image: mongo:4
         ports:
           - 27017:27017
