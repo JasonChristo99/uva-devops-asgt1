@@ -2,7 +2,6 @@ import os
 import tempfile
 from functools import reduce
 from pymongo import MongoClient
-from bson import ObjectId
 
 # Connection to MongoDB
 mongo_uri = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/')
