@@ -1,12 +1,12 @@
 version: '3'
 services:
   student_service:
-    image: jasonchristo99/student_service
+    image: student_service
     restart: unless-stopped
     depends_on:
       - mongo
     environment:
-      MONGO_URI: mongodb://mongo:27017
+      MONGO_URI: mongodb://mongo:27017/
     ports:
       - "8080:8080"
 
