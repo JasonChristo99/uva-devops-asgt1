@@ -15,12 +15,12 @@ jobs:
         ports:
           - 27017:27017
     steps:
-#      check mongodb is running
-      - name: Wait for MongoDB
-        run: |
-          while ! nc -z localhost 27017; do sleep 1; done
-          echo "MongoDB is up and running"
       - uses: actions/checkout@v2
+      - name: Wait for MongoDB
+          run: |
+            while ! nc -z localhost 27017; do sleep 1; done
+            echo "MongoDB is up and running"
+
       - name: Build docker
         run: |
           docker build . -t $REPO_NAME/$IMAGE_NAME
