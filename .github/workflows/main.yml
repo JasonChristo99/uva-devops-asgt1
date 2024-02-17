@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Wait for MongoDB
-          run: |
+        run: |
             while ! nc -z localhost 27017; do sleep 1; done
             echo "MongoDB is up and running"
 
