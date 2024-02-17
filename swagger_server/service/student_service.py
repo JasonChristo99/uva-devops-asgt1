@@ -14,7 +14,10 @@ collection = db['students']
 def add(student=None):
     # If student_id is not provided, generate a new unique id
     if not student.student_id:
-        student.student_id = str(ObjectId())
+        # Find the maximum student_id and increment it by 1
+        max_student_id = collection.find_one({}, sort=[("student_id", -1)])
+        new_student_id = int(max_student_id.get('student_id', 0)) + 1
+        student.student_id = new_student_id
 
     query = {"student_id": student.student_id}
     existing_student = collection.find_one(query)
