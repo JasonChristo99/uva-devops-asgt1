@@ -5,9 +5,9 @@ from pymongo import MongoClient
 
 # Connection to MongoDB
 mongo_uri = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/')
-# client = MongoClient(mongo_uri)
-# db = client['students_db']
-# collection = db['students']
+client = MongoClient(mongo_uri)
+db = client['students_db']
+collection = db['students']
 
 
 def add(student=None):
