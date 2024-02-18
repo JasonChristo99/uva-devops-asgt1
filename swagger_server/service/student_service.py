@@ -15,8 +15,9 @@ def add(student=None):
     client = MongoClient(mongo_uri)
     db = client['students_db']
     collection = db['students']
-
-    return 'already exists', 409
+    result = collection.insert_one(student.to_dict())
+    return student.student_id
+    # return 'already exists', 409
     # # If student_id is not provided, generate a new unique id
     # if not student.student_id:
     #     # Find the maximum student_id and increment it by 1
