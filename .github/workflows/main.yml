@@ -24,22 +24,12 @@ jobs:
       - name: Build docker
         run: |
           docker build . -t $REPO_NAME/$IMAGE_NAME
-      - name: run docker
+      - name: Run docker
         run: |
-          docker run -d -p 8080:8080 -e MONGO_URI=$MONGO_URI $REPO_NAME/$IMAGE_NAME:latest && \
+          docker run -d -p 8080:8080 --network host -e MONGO_URI=$MONGO_URI $REPO_NAME/$IMAGE_NAME:latest && \
             docker ps && sleep 5 && \
           docker exec $(docker ps -q --filter "ancestor=$REPO_NAME/$IMAGE_NAME:latest") printenv
-#
-      - name: Display Docker network information
-        run: |
-          echo "Networks:"
-          docker network ls
-          echo "Network details for student_service container:"
-          docker inspect -f '{{json .NetworkSettings.Networks}}' $(docker ps -q --filter "ancestor=$REPO_NAME/$IMAGE_NAME:latest")
-          echo "Network details for mongo container:"
-          docker inspect -f '{{json .NetworkSettings.Networks}}' $(docker ps -q --filter "ancestor=mongo:4")
-#
-#
+
       - name: "Check files existence"
         uses: andstor/file-existence-action@v2
         with:
