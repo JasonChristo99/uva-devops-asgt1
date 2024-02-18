@@ -32,6 +32,13 @@ jobs:
 
       - name: Create mongoDB Docker container
         run: sudo docker run -d --rm --name my_mongo --network host -p 27017:27017 mongo:4
+#wait for mongo to start
+      - name: Wait for MongoDB to start
+        run: |
+          echo "Waiting for MongoDB to start"
+          while ! nc -z localhost 27017; do sleep 1; done
+          echo "MongoDB started"
+
 
 #      - name: Start MongoDB
 #          uses: supercharge/mongodb-github-action@1.10.0
