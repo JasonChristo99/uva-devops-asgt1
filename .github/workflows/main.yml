@@ -61,6 +61,8 @@ jobs:
         run: |
           docker run -d -p 8080:8080 -e MONGO_URI=$MONGO_URI $REPO_NAME/$IMAGE_NAME:latest && \
             docker ps && sleep 5
+#          print $MONGO_URI from the container
+          docker exec $(docker ps -q --filter "ancestor=$REPO_NAME/$IMAGE_NAME:latest") printenv
 #
 #      - name: Display Docker network information
 #        run: |
