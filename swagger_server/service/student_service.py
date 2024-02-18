@@ -5,6 +5,7 @@ from pymongo import MongoClient
 
 # Connection to MongoDB
 mongo_uri = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/')
+print('Connecting to MongoDB at', mongo_uri)
 client = MongoClient(mongo_uri)
 db = client['students_db']
 collection = db['students']
