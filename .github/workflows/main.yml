@@ -3,7 +3,7 @@ on: [ push ]
 env:
   IMAGE_NAME: student_service
   REPO_NAME: jasonchristo99
-#  MONGO_URI: "mongodb://172.17.0.2:27017/"
+  MONGO_URI: "mongodb://localhost:27017/"
 
 
 jobs:
@@ -38,13 +38,13 @@ jobs:
 #          with:
 #            mongodb-version: 4
 
-      - name: Set MONGO_URI
-        run: |
-          MONGO_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_mongo)
-          echo "MONGO_IP: $MONGO_IP"
-          MONGO_URI="mongodb://$MONGO_IP:27017/"
-          echo "MONGO_URI: $MONGO_URI"
-          echo "MONGO_URI=$MONGO_URI" >> $GITHUB_ENV
+#      - name: Set MONGO_URI
+#        run: |
+#          MONGO_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_mongo)
+#          echo "MONGO_IP: $MONGO_IP"
+#          MONGO_URI="mongodb://$MONGO_IP:27017/"
+#          echo "MONGO_URI: $MONGO_URI"
+#          echo "MONGO_URI=$MONGO_URI" >> $GITHUB_ENV
 
       - uses: actions/checkout@v2
 #          echo "GITHUB_ENV: $GITHUB_ENV"
