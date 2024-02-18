@@ -32,7 +32,7 @@ jobs:
 #        run: echo "MONGO_URI=mongodb://$MONGO_IP:27017/" >> $GITHUB_ENV
 
       - name: Create mongoDB Docker container
-        run: sudo docker run -d -p 27017:27017 mongo:4
+        run: sudo docker run -d -p 27017:27017 mongo:4 --name my_mongo
 
 #      - name: Start MongoDB
 #          uses: supercharge/mongodb-github-action@1.10.0
@@ -42,7 +42,7 @@ jobs:
       - name: Get MongoDB container's IP address
         id: mongo_ip
         run: |
-          echo "MONGO_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mongo:4)" >> $GITHUB_ENV
+          echo "MONGO_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_mongo)" >> $GITHUB_ENV
 
       - name: Set MONGO_URI
         run: |
