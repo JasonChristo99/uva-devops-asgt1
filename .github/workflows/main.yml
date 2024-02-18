@@ -32,7 +32,7 @@ jobs:
 #        run: echo "MONGO_URI=mongodb://$MONGO_IP:27017/" >> $GITHUB_ENV
 
       - name: Create mongoDB Docker container
-        run: sudo docker run -d -p 27017:27017 mongo:4 --name my_mongo
+        run: sudo docker run -d --rm --name my_mongo -p 27017:27017 mongo:4
 
 #      - name: Start MongoDB
 #          uses: supercharge/mongodb-github-action@1.10.0
