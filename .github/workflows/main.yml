@@ -31,7 +31,7 @@ jobs:
 #        run: echo "MONGO_URI=mongodb://$MONGO_IP:27017/" >> $GITHUB_ENV
 
       - name: Create mongoDB Docker container
-        run: sudo docker run -d --rm --name my_mongo -p 27017:27017 mongo:4
+        run: sudo docker run -d --rm --name my_mongo --network host -p 27017:27017 mongo:4
 
 #      - name: Start MongoDB
 #          uses: supercharge/mongodb-github-action@1.10.0
@@ -59,7 +59,7 @@ jobs:
           docker build . -t $REPO_NAME/$IMAGE_NAME
       - name: run docker
         run: |
-          docker run -d -p 8080:8080 -e MONGO_URI=$MONGO_URI $REPO_NAME/$IMAGE_NAME:latest && \
+          docker run -d -p 8080:8080 --network host -e MONGO_URI=$MONGO_URI $REPO_NAME/$IMAGE_NAME:latest && \
             docker ps && sleep 5 && \
           docker exec $(docker ps -q --filter "ancestor=$REPO_NAME/$IMAGE_NAME:latest") printenv
 #
