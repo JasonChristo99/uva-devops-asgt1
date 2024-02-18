@@ -3,22 +3,23 @@ on: [ push ]
 env:
   IMAGE_NAME: student_service
   REPO_NAME: jasonchristo99
-  MONGO_URI: "mongodb://localhost:27017/"
+#  MONGO_URI: "mongodb://localhost:27017/"
+  MONGO_URI: "mongodb://mongo:27017/"
 
 
 jobs:
   build:
     runs-on: ubuntu-latest
-#    services:
-#      mongo:
-#        image: mongo:4
-#        ports:
-#          - 27017:27017
-#        options: >-
-#          --health-cmd mongo
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
+    services:
+      mongo:
+        image: mongo:4
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd mongo
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
 
 #      - name: Get MongoDB container's IP address
@@ -30,14 +31,14 @@ jobs:
 #      - name: Set MONGO_URI
 #        run: echo "MONGO_URI=mongodb://$MONGO_IP:27017/" >> $GITHUB_ENV
 
-      - name: Create mongoDB Docker container
-        run: sudo docker run -d --rm --name my_mongo --network host -p 27017:27017 mongo:4
+#      - name: Create mongoDB Docker container
+#        run: sudo docker run -d --rm --name my_mongo --network host -p 27017:27017 mongo:4
 #wait for mongo to start
-      - name: Wait for MongoDB to start
-        run: |
-          echo "Waiting for MongoDB to start"
-          while ! nc -z localhost 27017; do sleep 1; done
-          echo "MongoDB started"
+#      - name: Wait for MongoDB to start
+#        run: |
+#          echo "Waiting for MongoDB to start"
+#          while ! nc -z localhost 27017; do sleep 1; done
+#          echo "MongoDB started"
 
 
 #      - name: Start MongoDB
