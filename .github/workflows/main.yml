@@ -3,8 +3,8 @@ on: [ push ]
 env:
   IMAGE_NAME: student_service
   REPO_NAME: jasonchristo99
-#  MONGO_URI: "mongodb://localhost:27017/"
-  MONGO_URI: "mongodb://mongo:27017/"
+  MONGO_URI: "mongodb://localhost:27017/"
+#  MONGO_URI: "mongodb://mongo:27017/"
 
 
 jobs:
