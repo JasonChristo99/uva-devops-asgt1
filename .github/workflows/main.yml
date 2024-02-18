@@ -39,6 +39,15 @@ jobs:
 #          with:
 #            mongodb-version: 4
 
+      - name: Get MongoDB container's IP address
+        id: mongo_ip
+        run: |
+          echo "MONGO_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mongo)" >> $GITHUB_ENV
+
+      - name: Set MONGO_URI
+        run: |
+          echo "MONGO_URI=mongodb://$MONGO_IP:27017/" >> $GITHUB_ENV
+          echo "MONGO_URI: $MONGO_URI"
 
       - name: Build docker
         run: |
