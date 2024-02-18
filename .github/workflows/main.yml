@@ -9,17 +9,17 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      mongo:
-        image: mongo:4
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd mongo
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    steps:
+#    services:
+#      mongo:
+#        image: mongo:4
+#        ports:
+#          - 27017:27017
+#        options: >-
+#          --health-cmd mongo
+#          --health-interval 10s
+#          --health-timeout 5s
+#          --health-retries 5
+#    steps:
       - uses: actions/checkout@v2
 
 #      - name: Get MongoDB container's IP address
@@ -30,6 +30,9 @@ jobs:
 #
 #      - name: Set MONGO_URI
 #        run: echo "MONGO_URI=mongodb://$MONGO_IP:27017/" >> $GITHUB_ENV
+
+      - name: Create mongoDB Docker container
+        run: sudo docker run -d -p 27017:27017 mongo:4
 
       - name: Build docker
         run: |
